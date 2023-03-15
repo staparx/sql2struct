@@ -14,7 +14,7 @@ func main() {
 	var err error
 
 	flag.StringVar(&mode, "mode", "db", "执行模式 sql：建表语句解析 db:数据库解析")
-	flag.StringVar(&dbName, "dbname", "cdp-userinfo_fangzhiadmin_test", "数据库名称")
+	flag.StringVar(&dbName, "dbname", "", "数据库名称")
 	flag.StringVar(&sql, "sql", "", "建表语句")
 	flag.StringVar(&path, "path", "./model", "model生成地址")
 	// 解析命令行参数
