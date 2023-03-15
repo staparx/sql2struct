@@ -1,0 +1,49 @@
+#数据库模式实例
+db:
+  username: "username"
+  password: "password"
+  host: "host"
+
+# 命名方式转换
+# 下划线 underscore
+# 大驼峰 upper_camel_case
+# 小驼峰 lower_camel_case
+case:
+  old: "underscore"
+  new: "upper_camel_case"
+
+#需要反射的字段
+tag:
+  - "json"
+  - "gorm"
+
+#mysql映射到go的类型
+typeMap:
+  #类型映射
+  tinyint: "int64"
+  smallint: "int64"
+  mediumint: "int64"
+  int: "int64"
+  bigint: "int64"
+  float: "float64"
+  double: "float64"
+  decimal: "float64"
+  date: "time.Time"
+  time: "time.Time"
+  year: "time.Time"
+  datetime: "time.Time"
+  timestamp: "time.Time"
+  char: "string"
+  varchar: "string"
+  tinyblob: "string"
+  tinytext: "string"
+  blob: "string"
+  text: "string"
+  mediumblob: "string"
+  mediumtext: "string"
+  longblob: "string"
+  longtext: "string"
+
+path:
+  #模版文件路径，默认查找$GOPATH/bin
+  template: ""

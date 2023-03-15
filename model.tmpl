@@ -1,0 +1,33 @@
+package {{ .PackageName }}
+
+{{if .ImportPackages}}
+import (
+{{- range .ImportPackages }}
+    {{.}}
+{{- end}}
+)
+{{- end}}
+
+type {{.GoTableName}} struct {
+{{- range .Fields }}
+    // {{ .ColumnComment }}
+    {{ .GoColumnName }} {{  .GoColumnType }} {{if .Tag}}`{{- range .Tag }}{{.TagKey}}:"{{.TagValue}}" {{end}}`{{- end}}
+{{- end}}
+}
+
+func (t *{{ .GoTableName }}) TableName() string {
+	return "{{.TableName}}"
+}
+
+
+const (
+    {{- range .Fields}}
+    {{ $.GoTableName }}Column{{.GoColumnName}} = "{{.ColumnName}}"
+    {{- end }}
+)
+
+var {{ .GoTableName }}Columns = []string{
+    {{- range .Fields}}
+    {{ $.GoTableName }}Column{{ .GoColumnName}},
+    {{- end }}
+}
