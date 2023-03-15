@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/xwb1989/sqlparser"
+	"sync"
 )
 
 func ParseSQLToFileStruct(sql string, packageName string) (*Table, error) {
@@ -33,6 +34,7 @@ func ParseSQLToFileStruct(sql string, packageName string) (*Table, error) {
 			ImportPackages: make([]string, 0, 0),
 		}
 
+		var once sync.Once
 		//字段获取
 		for _, column := range ddl.TableSpec.Columns {
 			columnName := column.Name.String()
@@ -48,9 +50,10 @@ func ParseSQLToFileStruct(sql string, packageName string) (*Table, error) {
 			if !ok {
 				goColumnType = GoTypeString
 			}
-
 			if goColumnType == GoTypeTime {
-				table.ImportPackages = append(table.ImportPackages, `"time"`)
+				once.Do(func() {
+					table.ImportPackages = append(table.ImportPackages, `"time"`)
+				})
 			}
 
 			fileColumn := &Column{
