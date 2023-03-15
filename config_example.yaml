@@ -1,5 +1,0 @@
-#数据库模式实例
-db:
-  username: "username"
-  password: "password"
-  host: "host:port"
