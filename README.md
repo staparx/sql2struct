@@ -5,9 +5,10 @@
 
 通过解析mysql的建表语句，将其转换成Golang中的结构体。
 
-## 依赖
+## 框架
+* Go1.19
 * 配置读取 - [viper](github.com/spf13/viper)
-* SQL解析 - [tidb/parser](github.com/pingcap/tidb)
+* SQL解析 - [sqlparser](github.com/xwb1989/sqlparser)
 * ORM框架 - [gorm](gorm.io/gorm)
 
 
@@ -18,9 +19,14 @@
 config.yaml中配置好DSN的相关内容
 
 ## 运行方式
+`默认运行方式为db模式`
+
+db模式运行：
 ```shell
-sql2struct -mode db -dbname database_name -path ./model
+sql2struct  -dbname database_name -path ./model
 ```
+
+
 ### 命令参数
 ```text
 Usage of sql2struct:
